@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataAccess.IRepositories;
 using DataAccess.Models;
 using log4net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using News.ViewModel;
@@ -110,6 +111,7 @@ namespace News.Controllers
 
         #endregion
         #region"Subscribe News"
+        [Authorize]
         [HttpPost]
         [ActionName("SubscribeNews")]
         public IActionResult SubscribeNews([FromBody]tblNewsSubscribe model)
