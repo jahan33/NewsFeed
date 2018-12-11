@@ -1,0 +1,110 @@
+
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" [(opened)]="authService.sidebarStatus">
+      <b class="padding-right-10">&nbsp;Channels&nbsp;</b>
+      <div *ngFor="let channelItem of channelService.allChannel; let i=index" class="width-100-pr">
+        <button (click)="searchNewsByType(channelItem.PKChannel,'Channel',channelItem.ChannelName)" mat-raised-button [ngClass]="{'btn-primary':i%2==0,'btn-success':i%2!=0}" class="width-100-pr no-barder-radius" *ngIf="channelItem.IsSubscribe!=true">{{channelItem.ChannelName}}</button>
+      </div>
+      <button (click)="searchNewsByType(0,'Bookmarks','')" mat-raised-button class="width-100-pr no-barder-radius btn-primary" *ngIf="authService.CurrentUser.PKUser>0"><b>Bookmarks</b></button>
+      <div class="margin-top-5 border-top">
+        <b class="padding-right-10">&nbsp;Subscribe&nbsp;</b>
+      </div>
+      <div *ngFor="let channelItem of channelService.allChannel; let i=index">
+        <button (click)="searchNewsByType(channelItem.PKChannel,'Channel',channelItem.ChannelName)" mat-raised-button [ngClass]="{'btn-primary':i%2==0,'btn-success':i%2!=0}" class="width-100-pr no-barder-radius" *ngIf="channelItem.IsSubscribe==true&&authService.CurrentUser.PKUser>0">{{channelItem.ChannelName}}</button>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="margin-left-5" >
+      <div class="row">
+        <div class="col-md-12 float-left  no-Padding-LR">
+
+          <div class="col-md-6 float-left">
+            <form #SearchNewsForm="ngForm">
+
+              <div class="form-group">
+
+                <mat-form-field class="width-100-pr">
+                  <mat-icon matSuffix class="pointer" (click)="newsService.SearchNews()">search</mat-icon>
+                  <input matInput placeholder="Search" (blur)="newsService.SearchNews()" id="txtSearch" name="txtSearch" #txtSearch="ngModel" [(ngModel)]="newsService.filter.Search" />
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 float-left margin-top-5">
+            <mat-card *ngIf="newsService.filter.filterType.length>0||newsService.filter.Search.length>0">
+              <mat-card-header>
+               
+              </mat-card-header>
+              <mat-card-content>
+                <div>
+                  <b class="float-left">Filter Applied:&nbsp;</b>
+                </div>
+                <p>
+                  <span *ngIf="newsService.filter.Search.length>0" class="margin-top-5">{{newsService.filter.Search}}</span><span class="margin-top-5" *ngIf="newsService.filter.filterType.length>0&&newsService.filter.Search.length>0">,</span><span class="margin-top-5" *ngIf="newsService.filter.filterType.length>0">{{newsService.filter.filterType}}&nbsp;:&nbsp;{{newsService.filter.typeName}}</span>
+                  <button (click)="ResetSearch()" mat-raised-button color="warn" class="btn btn-danger float-right">Reset</button>
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+               
+              </mat-card-actions>
+            </mat-card>
+            </div>
+          </div>
+          <!--</div>
+  <div class="row">-->
+          <div class="col-md-12 no-Padding-LR">
+
+            <div class="col-md-6 float-left margin-top-5 no-Padding-LR" *ngFor="let newsItem of newsService.newsList; let i=index">
+              <mat-card>
+                <mat-card-header>
+
+                  <div mat-card-avatar>{{newsItem.ChannelName}}</div>
+                  <mat-card-title [innerHTML]="newsItem.Title"></mat-card-title>
+                  <mat-card-subtitle>{{newsItem.Author}}&nbsp;<small>({{newsItem.CreatedDate | date:'dd-MMM-yyyy HH:mm'}})</small></mat-card-subtitle>
+                </mat-card-header>
+                <img class="float-left" mat-card-image [src]="newsItem.ImageURL" alt="newsItem.Title">
+                <mat-card-content>
+                  <p [innerHTML]="newsItem.Description">
+
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-icon-button (click)="SubscribeNews(newsItem.PKNews)" [ngClass]="{'btn-primary primary':!newsItem.IsSubscribe,'btn-success success':newsItem.IsSubscribe}" [title]="newsItem.IsSubscribe?'Remove bookmark':'Bookmark'">
+                    <mat-icon aria-label="icon-button with a heart icon">favorite</mat-icon>
+                  </button>
+
+                  <button mat-icon-button (click)="SubscribeChannel(newsItem.FKChannel)" [ngClass]="{'btn-primary primary':!newsItem.IsSubscribeChannel,'btn-success success':newsItem.IsSubscribeChannel}" [title]="newsItem.IsSubscribeChannel?'Unsubscribe channel':'Subscribe channel'">
+                    <mat-icon aria-label="icon-button with a heart icon">add_alert</mat-icon>
+                  </button>
+                  <button mat-button (click)="GetNewsDetail(newsItem)">View Detail</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+
+
+          </div>
+
+        </div>
+        <!--<div class="row">-->
+          <div class="col-md-12">
+            <div *ngIf="newsService.totalNews<1">
+              <div class="card-header">
+
+                <h5 class="card-header-text">  Data is Not Available </h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" *ngIf="newsService.totalNews>0">
+
+            <mat-paginator [length]="newsService.totalNews"
+                           [pageSize]="6" [showFirstLastButtons]="true"
+                           [pageSizeOptions]="[6,12,24,30]"
+                           (page)="pageEvent = GetNews($event)">
+            </mat-paginator>
+
+          </div>
+        <!--</div>-->
+
+</mat-sidenav-content>
+  </mat-sidenav-container>
+

@@ -1,0 +1,14 @@
+<mat-toolbar  >
+  <div class="col-sm-12 no-padding-LR">
+    <!--<div class="row">-->
+  
+      <span class="float-left" color="info no-border-radious"> News Portal&nbsp;</span><mat-icon class="margin-top-5 pointer" (click)="toggleMenu()">reorder</mat-icon>
+    
+      <button mat-button class="float-right " *ngIf="authService.CurrentUser.FullName.length<1" (click)="loginService.showSignupPage(strNull)">Signup</button>
+     <button mat-button  class="float-right" *ngIf="authService.CurrentUser.FullName.length<1" (click)="loginService.showLoginPage(strNull)">Login</button>
+     <span class="float-right padding-right-10" *ngIf="authService.CurrentUser.FullName.length>0">Welcome,{{authService.CurrentUser.FullName}}&nbsp;|&nbsp;<button mat-button (click)="Logout()">Logout</button></span>
+    <!--</div>-->
+  </div>
+</mat-toolbar>
+
+

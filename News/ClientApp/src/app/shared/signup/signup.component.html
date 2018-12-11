@@ -1,0 +1,115 @@
+
+
+
+<div class="card no-border m-0">
+  <button mat-button [mat-dialog-close]><mat-icon class="float-right close-btn  btn-danger">close</mat-icon></button>
+
+  <div class="card-header border-0">
+
+    <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+      Register
+    </h6>
+
+  </div>
+  <div class="card-content">
+    <!--<div class="card-body pt-0 text-center" >
+
+      <a href="#" class="btn btn-social mb-1 mr-1 btn-outline-google">
+        <span class="fa fa-lock font-medium-4" (click)="loginData.isHCEUser=!loginData.isHCEUser"></span>
+
+      </a>
+    </div>-->
+
+    <div class="card-body pt-0">
+
+
+
+      <form class="form-horizontal" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" (mouseenter)="setValidation(loginForm) " (mouseleave)="setValidation(loginForm)">
+
+
+
+        <!--<div class="form-group">
+
+
+          <mat-form-field class="width-100-pr" *ngIf="!loginData.isHCEUser" [hideRequiredMarker]="true">
+            <input matInput placeholder="PHC Registration # " id="Registration_Number" name="Registration_Number" [(ngModel)]="loginData.Registration_Number" required #Registration_Number="ngModel" />
+
+            <mat-hint *ngIf="loginData.Registration_Number.length<1">Please enter the PHC registration number.</mat-hint>
+            <mat-error *ngIf="Registration_Number.hasError('required')">
+              PHC Registration Number <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+        </div>-->
+        <div class="form-group">
+
+
+          <mat-form-field class="width-100-pr" [hideRequiredMarker]="true">
+            <input matInput placeholder="Name" id="FullName" name="FullName" [(ngModel)]="loginData.FullName" required #FullName="ngModel" />
+            <mat-hint *ngIf="loginData.FullName.length<1">Please enter the name.</mat-hint>
+            <mat-error *ngIf="FullName.hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+
+
+          <mat-form-field class="width-100-pr" [hideRequiredMarker]="true">
+            <input matInput type="email" placeholder="Email" id="Email" name="Email" [(ngModel)]="loginData.Email" required #Email="ngModel" />
+            <mat-hint *ngIf="loginData.Email.length<1">Please enter the Email.</mat-hint>
+
+            <mat-error *ngIf="Email.hasError('email') && !Email.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="Email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="width-100-pr" [hideRequiredMarker]="true">
+            <input matInput type="password" placeholder="Password" id="Password" name="Password" [(ngModel)]="loginData.Password" required #Password="ngModel" />
+
+            <!--<span matPrefix>R-</span>-->
+            <mat-hint *ngIf="loginData.Password.length<1">Please enter the password.</mat-hint>
+            <mat-error *ngIf="Password.hasError('required')">
+              Password <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="Password.hasError('InValidLength')">
+              Password length must be of <strong>8 characters</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="form-group">
+          <mat-form-field class="width-100-pr" [hideRequiredMarker]="true">
+            <input matInput type="password" placeholder="Confirm Password" id="ConfirmPassword" name="ConfirmPassword" [(ngModel)]="loginData.ConfirmPassword" required #ConfirmPassword="ngModel" />
+
+            <!--<span matPrefix>R-</span>-->
+            <mat-hint *ngIf="loginData.ConfirmPassword.length<1">Please enter the confirm password.</mat-hint>
+            <mat-error *ngIf="ConfirmPassword.hasError('required')">
+              Confirm Password <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="ConfirmPassword.hasError('NotEqual')">
+              Password <strong>not match</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!--<div class="row">
+        <div class="col-xs-10 offset-xs-1">-->
+        <!--<button type="button" ng-click=" onSubmit() " class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"></button>-->
+        <button type="submit" class="btn  btn-block btn-primary"><i class="ft-unlock"></i> Signup</button>
+        <!--</div>
+        </div>-->
+        <div *ngIf="_AuthService.errorMessage.length>0" class=" alert alert-danger mb-2 mat-error margin-top-5">{{_AuthService.errorMessage}}</div>
+        <!-- <div class="card-footer"> -->
+
+      </form>
+    </div>
+
+  </div>
+</div>

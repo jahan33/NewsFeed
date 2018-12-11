@@ -1,0 +1,21 @@
+<button mat-button [mat-dialog-close]><mat-icon class="float-right   btn-danger" >close</mat-icon></button>
+
+<mat-card class="no-border no-Padding-TB no-Padding-LR">
+
+  <mat-card-header>
+
+    <div mat-card-avatar>{{newsItem.ChannelName}}</div>
+    <mat-card-title [innerHTML]="newsItem.Title"></mat-card-title>
+    <mat-card-subtitle>{{newsItem.Author}}&nbsp;<small>({{newsItem.CreatedDate | date:'dd-MMM-yyyy HH:mm'}})</small></mat-card-subtitle>
+  </mat-card-header>
+  <img class="float-left" mat-card-image [src]="newsItem.ImageURL" alt="newsItem.Title">
+  <mat-card-content>
+    <p [innerHTML]="newsItem.Description">
+
+    </p>
+    <p [innerHTML]="newsItem.Content">
+
+    </p>
+  </mat-card-content>
+
+</mat-card>
