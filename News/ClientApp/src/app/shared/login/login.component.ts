@@ -69,24 +69,27 @@ export class LoginComponent implements OnInit {
           if (this.NewsData != null) {
             if (this.NewsData.Type == 'News') {
               this.newsService.SubscribeNews(this.NewsData.ID).subscribe(n => {
-               // this.toastr.success('News subscribe successfully')
+
                 this.channelService.GetChannel();
                 this.newsService.SearchNews();
               })
-             
-             
+
+
             }
             if (this.NewsData.Type == 'Channel') {
               this.channelService.SubscribeChannel(this.NewsData.ID).subscribe(c => {
-               // this.toastr.success('Channel subscribe successfully')
+
                 this.channelService.GetChannel();
                 this.newsService.SearchNews();
               })
-             
-             
+
+
             }
-           
-          
+
+
+          } else {
+            this.channelService.GetChannel();
+            this.newsService.SearchNews();
           }
           this.dialogRef.close();
         },
