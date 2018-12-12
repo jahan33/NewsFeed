@@ -1,7 +1,9 @@
 # NewsFeed
 News Feed small app developed using asp.net core API and anguar 6
 <br>
-Used EF Code First,seed sample data for demo
+Used EF Code First
+<br>
+Create database if not exists, seed sample data for demo
 <br>
 Implement the repository factory pattern
 <br>
