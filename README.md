@@ -10,7 +10,9 @@ Implement the dependency injection
 Implement the token & domain based authentication 
 <br>
 Frontend develop using angular6 and angular material 
+<br>
 <b>In NewsFeed application</b>
+<br>
 User can view news feed list
 <br>
 Search news item (type in search text box and click on search icon)
