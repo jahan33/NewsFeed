@@ -50,7 +50,7 @@ export class ChannelService {
   }
   // Subscribe Channel
   public SubscribeChannel(FKChannel: any = {}) {
-
+    this.authService.GetUserInfo();
     let model: any = {};
     model.FKChannel = FKChannel;
     model.FKUser = this.authService.CurrentUser.PKUser

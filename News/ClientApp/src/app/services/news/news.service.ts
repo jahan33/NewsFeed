@@ -49,7 +49,7 @@ export class NewsService {
   }
   // Subscribe News
   public SubscribeNews(FKNews: any = {}) {
-    
+    this.authService.GetUserInfo();
     let model: any = {};
     model.FKNews = FKNews;
     model.FKUser=this.authService.CurrentUser.PKUser

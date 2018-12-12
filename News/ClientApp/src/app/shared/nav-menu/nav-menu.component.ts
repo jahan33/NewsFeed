@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { NewsService } from '../../services/news/news.service';
 import { LoginService } from '../../services/auth/login.service';
+import { ChannelService } from 'src/app/services/channel/channel.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,7 +11,7 @@ import { LoginService } from '../../services/auth/login.service';
 })
 export class NavMenuComponent {
   public strNull: any = null;
-  constructor(public authService: AuthService, public newsService: NewsService, public loginService: LoginService) {
+  constructor(public authService: AuthService, public newsService: NewsService, public channelService: ChannelService, public loginService: LoginService) {
     this.authService.GetUserInfo();
   }
   public toggleMenu() {
@@ -20,6 +21,12 @@ export class NavMenuComponent {
   }
   public Logout() {
     this.authService.logout();
+    this.newsService.filter = {};
+    this.newsService.filter.Search = "";
+    this.newsService.filter.filterType = "";
+    this.newsService.filter.showFilter = false;
+    this.channelService.filter = {};
     this.newsService.SearchNews();
+    this.channelService.SearchChannel();
   }
 }
