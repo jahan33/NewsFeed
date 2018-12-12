@@ -9,6 +9,8 @@ Implement the dependency injection
 <br>
 Implement the token & domain based authentication 
 <br>
+Implement error logging
+<br>
 Frontend develop using angular6 and angular material 
 <br>
 <b>In NewsFeed application</b>
