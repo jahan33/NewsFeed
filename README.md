@@ -3,7 +3,7 @@ News Feed small app developed using asp.net core API and anguar 6
 <br>
 Used EF Code First
 <br>
-If database doest not exists, create database runtime and seed sample data for demo
+if database does not exists, create database runtime and seed sample data for demo
 <br>
 Implement the repository factory pattern
 <br>
