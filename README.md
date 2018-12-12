@@ -21,7 +21,7 @@ User can view news feed list
 <br>
 Search news item (type in search text box and click on search icon)
 <br>
-view the news item detal
+view the news item detail
 <br>
 subscribe/unsubscribe the news channel
 <br>
