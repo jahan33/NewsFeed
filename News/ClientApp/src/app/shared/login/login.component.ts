@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
               this.newsService.SubscribeNews(this.NewsData.ID).subscribe(n => {
 
                 this.channelService.GetChannel();
-                this.newsService.SearchNews();
+              
               })
 
 
@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit {
             if (this.NewsData.Type == 'Channel') {
               this.channelService.SubscribeChannel(this.NewsData.ID).subscribe(c => {
 
-                this.channelService.GetChannel();
                 this.newsService.SearchNews();
               })
 
